@@ -14,6 +14,14 @@ class SmurfForm extends Component {
     };
   }
 
+  componentDidMount() {
+    if(this.props.activeSmurf) {
+      this.setState({
+        smurf: this.props.activeSmurf
+      })
+    }
+  }
+
   /* commenting out initial code as the form is now moved to a separate page and the .post() method was moved to App.js (where the data is passed down)
   addSmurf = event => {
     event.preventDefault();
@@ -29,7 +37,11 @@ class SmurfForm extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.addSmurf(event, this.state.smurf)
+    if (this.props.activeSmurf) {
+      this.props.editSmurf(event, this.state.smurf);
+    } else {
+      this.props.addSmurf(event, this.state.smurf);
+    }
     this.setState({
       smurf: {
         name: '',
@@ -80,7 +92,7 @@ class SmurfForm extends Component {
             value={this.state.smurf.height}
             name="height"
           />
-          <button type="submit">Add to the village</button>
+          <button type="submit">{this.props.activeSmurf ? 'Edit' : 'Add'}</button>
         </form>
       </div>
     );

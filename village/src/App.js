@@ -11,6 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       smurfs: [],
+      activeSmurf: null
     };
   }
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
@@ -43,12 +44,58 @@ class App extends Component {
       })
   }
 
+  setUpdateForm = (event, smurf) => {
+    event.preventDefault();
+    this.setState({
+      activeSmurf: smurf
+    })
+    this.props.history.push('/smurf-form');
+  }
+
+  editSmurf = (event, smurf) => {
+    event.preventDefault();
+    axios.put(`http://localhost:3333/smurfs/${smurf.id}`, smurf)
+      .then(response => {
+        console.log('data with smurf edited', response);
+        this.setState({
+          smurfs: response.data
+        })
+      })
+      .catch(error => {
+        console.log('error editing smurf', error)
+      })
+    this.setState({
+      activeSmurf: null
+    })
+  }
+
+  deleteSmurf = (event, id) => {
+    event.preventDefault();
+    axios.delete(`http://localhost:3333/smurfs/${id}`)
+      .then(response => {
+        console.log('data with smurf deleted', response);
+        this.setState({
+          smurfs: response.data
+        })
+      })
+      .catch(error => {
+        console.log('error deleting smurf', error)
+      })
+  }
+
+  //reset to prevent current activesmurf from populating form in case the user from clicking on back to home without editing
+  resetActive = () => {
+    this.setState({
+      activeSmurf: null
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <header className='App-navBar'>
-          <NavLink exact to='/'>Back to home</NavLink>
-          <NavLink exact to='/smurf-form'>Add a smurf</NavLink>
+          <NavLink exact to='/'><button>Home</button></NavLink>
+          <NavLink exact to='/smurf-form'><button onClick={() => this.resetActive()}>Add smurf</button></NavLink>
         </header>
         <Route
           exact
@@ -57,6 +104,8 @@ class App extends Component {
             <Smurfs
               {...props}
               smurfs={this.state.smurfs}
+              deleteSmurf={this.deleteSmurf}
+              setUpdateForm={this.setUpdateForm}
             />
           )} />
         <Route 
@@ -65,6 +114,8 @@ class App extends Component {
             <SmurfForm 
               {...props}
               addSmurf={this.addSmurf}
+              activeSmurf={this.state.activeSmurf}
+              editSmurf={this.editSmurf}
             />
         )} />
       </div>
