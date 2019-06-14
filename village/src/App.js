@@ -97,27 +97,29 @@ class App extends Component {
           <NavLink exact to='/'><button>Home</button></NavLink>
           <NavLink exact to='/smurf-form'><button onClick={() => this.resetActive()}>Add smurf</button></NavLink>
         </header>
-        <Route
-          exact
-          path='/'
-          render={(props) => (
-            <Smurfs
-              {...props}
-              smurfs={this.state.smurfs}
-              deleteSmurf={this.deleteSmurf}
-              setUpdateForm={this.setUpdateForm}
-            />
+        <div className='content'>
+          <Route
+            exact
+            path='/'
+            render={(props) => (
+              <Smurfs
+                {...props}
+                smurfs={this.state.smurfs}
+                deleteSmurf={this.deleteSmurf}
+                setUpdateForm={this.setUpdateForm}
+              />
+            )} />
+          <Route 
+            path='/smurf-form' 
+            render={(props) => (
+              <SmurfForm 
+                {...props}
+                addSmurf={this.addSmurf}
+                activeSmurf={this.state.activeSmurf}
+                editSmurf={this.editSmurf}
+              />
           )} />
-        <Route 
-          path='/smurf-form' 
-          render={(props) => (
-            <SmurfForm 
-              {...props}
-              addSmurf={this.addSmurf}
-              activeSmurf={this.state.activeSmurf}
-              editSmurf={this.editSmurf}
-            />
-        )} />
+        </div>
       </div>
     );
   }
