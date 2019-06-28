@@ -1,3 +1,113 @@
 .App {
   text-align: center;
 }
+
+.App-navBar {
+  background: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 5px;
+}
+
+.App-navBar button {
+  font-family: sans-serif;
+  background: #0FA8EB;
+  color: white;
+  font-size: 16px;
+  border: 2px solid #0FA8EB;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 20px;
+  padding: 3px 6px;
+  outline: none;
+}
+
+.App-navBar button:hover {
+  color: #0FA8EB;
+  background: white;
+}
+
+.content {
+  margin: 50px auto 0 auto;
+}
+
+.content .Smurfs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.content .Smurfs .Smurf {
+  width: 400px;
+  background: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.content .Smurfs .Smurf button {
+  align-self: center;
+  font-family: sans-serif;
+  background: #0FA8EB;
+  color: white;
+  font-size: 16px;
+  border: 2px solid #0FA8EB;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 20px;
+  padding: 3px 6px;
+  outline: none;
+}
+
+.content .Smurfs .Smurf button:hover {
+  color: #0FA8EB;
+  background: white;
+}
+
+.content .SmurfForm {
+  width: 70%;
+  margin: 70px auto;
+  background: white;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.content .SmurfForm form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content .SmurfForm form input {
+  width: 80%;
+  font-size: 16px;
+  padding: 1px;
+  margin: 10px;
+}
+
+.content .SmurfForm button {
+  align-self: center;
+  font-family: sans-serif;
+  background: #0FA8EB;
+  color: white;
+  font-size: 16px;
+  border: 2px solid #0FA8EB;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 20px;
+  padding: 3px 6px;
+  outline: none;
+}
+
+.content .SmurfForm button:hover {
+  color: #0FA8EB;
+  background: white;
+}
